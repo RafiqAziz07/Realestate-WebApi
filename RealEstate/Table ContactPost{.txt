@@ -1,0 +1,212 @@
+Table ContactPost{
+    Id int [primary key]
+    FullName string
+    Email string
+    Message string
+    Answer string
+    AnsweredAt datetime
+    CreatedBy int
+    CreatedAt datetime
+    LastModifiedAt datetime
+    LastModifiedBy int
+    DeletedAt datetime
+    DeletedBy int
+}
+
+Table Agent{
+    Id int [primary key]
+    Name string
+    Surname string
+    Email string
+    Phone string
+    ImagePath string
+    Rate decimal
+    CreatedAt datetime
+    CreatedBy int
+    LastModifiedAt datetime
+    LastModifiedBy int
+    DeletedAt datetime
+    DeletedBy int
+}
+
+Table BlogPost{
+    Id int [primary key]
+    Title string
+    ImagePath string
+    Body text
+    PublishedBy int
+    PublishedAt datetime
+    CreatedAt datetime
+    CreatedBy int
+    LastModifiedAt datetime
+    LastModifiedBy int
+    DeletedAt datetime
+    DeletedBy int
+}
+
+Table Tag{
+    Id int [primary key]
+    Name string
+    CreatedAt datetime
+    CreatedBy int
+    LastModifiedAt datetime
+    LastModifiedBy int
+    DeletedAt datetime
+    DeletedBy int
+}
+
+Table BlogPostTag{
+    BlogPostId int
+    TagId int
+    CreatedAt datetime
+    CreatedBy int
+    LastModifiedAt datetime
+    LastModifiedBy int
+    DeletedAt datetime
+    DeletedBy int
+}
+
+Table BlogPostComment{
+    Id int [primary key]
+    BlogPostId int
+    ParentId int
+    Text string
+    CreatedAt datetime
+    CreatedBy int
+    LastModifiedAt datetime
+    LastModifiedBy int
+    DeletedAt datetime
+    DeletedBy int
+}
+
+Table BlogPostLike{
+    BlogPostId int
+    UserId string
+    CreatedAt datetime
+    CreatedBy int
+    LastModifiedAt datetime
+    LastModifiedBy int
+    DeletedAt datetime
+    DeletedBy int
+}
+
+Table Subscriber{
+    Email string [primary key]
+    CreatedAt datetime
+    Approved bool
+    ApprovedAt datetime
+}
+
+Table Announcement{
+    Id int [primary key]
+    Title string
+    Type int
+    CategoryId int
+    CityId int
+    Address string
+    Phone string
+    Email string
+    Description text
+    Price decimal
+    PriceUnit int
+    FromAgent bool
+    CreatedAt datetime
+    CreatedBy int
+    LastModifiedAt datetime
+    LastModifiedBy int
+    DeletedAt datetime
+    DeletedBy int
+}
+
+Table AnnouncementMedia{
+    Id int [primary key]
+    AnnouncementId int
+    Path string
+    IsMain bool
+    Type int
+    CreatedAt datetime
+    CreatedBy int
+    LastModifiedAt datetime
+    LastModifiedBy int
+    DeletedAt datetime
+    DeletedBy int
+}
+
+Table AnnouncementSpecification{
+    Id int [primary key]
+    Name string
+    IsActive bool
+}
+
+Table AnnouncementSpecificationValue{
+    SpecificationId int
+    AnnouncementId int
+    Value string
+    CreatedAt datetime
+    CreatedBy int
+    LastModifiedAt datetime
+    LastModifiedBy int
+    DeletedAt datetime
+    DeletedBy int
+}
+
+Table AnnouncementComment{
+    Id int [primary key]
+    AnnouncementId int
+    ParentId int
+    Text string
+    CreatedAt datetime
+    CreatedBy int
+    LastModifiedAt datetime
+    LastModifiedBy int
+    DeletedAt datetime
+    DeletedBy int
+}
+
+Table Category{
+    Id int [primary key]
+    Name string
+    ImagePath string
+    CreatedAt datetime
+    CreatedBy int
+    LastModifiedAt datetime
+    LastModifiedBy int
+    DeletedAt datetime
+    DeletedBy int
+}
+
+Table City{
+    Id int [primary key]
+    Name string
+    CreatedAt datetime
+    CreatedBy int
+    LastModifiedAt datetime
+    LastModifiedBy int
+    DeletedAt datetime
+    DeletedBy int
+}
+
+Table Partner{
+    Id int [primary key]
+    Name string
+    LogoPath string
+    CreatedAt datetime
+    CreatedBy int
+    LastModifiedAt datetime
+    LastModifiedBy int
+    DeletedAt datetime
+    DeletedBy int
+}
+
+Ref: BlogPostTag.BlogPostId > BlogPost.Id  
+Ref: BlogPostTag.TagId > Tag.Id  
+Ref: BlogPostComment.BlogPostId > BlogPost.Id  
+Ref: BlogPostComment.ParentId > BlogPostComment.Id  
+Ref: BlogPostLike.BlogPostId > BlogPost.Id  
+Ref: AnnouncementMedia.AnnouncementId > Announcement.Id  
+Ref: AnnouncementSpecificationValue.AnnouncementId > Announcement.Id  
+Ref: AnnouncementSpecificationValue.SpecificationId > AnnouncementSpecification.Id  
+Ref: AnnouncementComment.AnnouncementId > Announcement.Id  
+Ref: AnnouncementComment.ParentId > AnnouncementComment.Id  
+Ref: Announcement.CategoryId > Category.Id  
+Ref: Announcement.CityId > City.Id
