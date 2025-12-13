@@ -16,6 +16,18 @@ namespace RealEstate.Presistence.Configurations
             builder.Property(a => a.AnnouncementId).HasColumnType("int").IsRequired();
             builder.Property(a => a.Value).HasColumnType("nvarchar(500)").IsRequired();
             builder.ConfigureAuditableEntity();
+
+            builder.HasOne<Announcement>()
+                .WithMany()
+                .HasPrincipalKey(a => a.Id)
+                .HasForeignKey(a => a.AnnouncementId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne<Announcement>()
+                .WithMany()
+                .HasForeignKey(a => a.AnnouncementId)
+                .HasPrincipalKey(a => a.Id)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

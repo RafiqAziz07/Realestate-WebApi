@@ -18,6 +18,14 @@ namespace RealEstate.Presistence.Configurations
             builder.ConfigureAuditableEntity();
             builder.ToTable("AnnouncementComments");
 
+            builder.HasOne<Announcement>()
+                   .WithMany()
+                   .HasForeignKey(ac => ac.AnnouncementId)
+                   .HasPrincipalKey(a => a.Id)
+                   .OnDelete(DeleteBehavior.NoAction);
+
+            
+
         }
     }
 }

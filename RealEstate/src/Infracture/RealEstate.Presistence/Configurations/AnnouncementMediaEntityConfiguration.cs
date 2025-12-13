@@ -17,9 +17,13 @@ namespace RealEstate.Presistence.Configurations
             builder.Property(am => am.IsMain).HasColumnType("bit").IsRequired().HasMaxLength(500);
             builder.Property(am => am.Type).HasColumnType("int").IsRequired();
 
-
-
             builder.ConfigureAuditableEntity();
+
+            builder.HasOne<Announcement>()
+                   .WithMany()
+                   .HasForeignKey(am => am.AnnocementId)
+                   .HasPrincipalKey(a => a.Id)
+                   .OnDelete(DeleteBehavior.NoAction);
         }
 
         

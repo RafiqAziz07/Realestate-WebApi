@@ -15,6 +15,10 @@ namespace RealEstate.Presistence.Configurations
             builder.Property(a => a.Name).HasColumnType("nvarchar(250)").IsRequired();
             builder.Property(a => a.IsActive).HasColumnType("bit").IsRequired();
             builder.ConfigureAuditableEntity();
+
+            
+
+
         }
 
     }

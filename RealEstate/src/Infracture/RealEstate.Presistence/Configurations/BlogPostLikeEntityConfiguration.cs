@@ -19,7 +19,7 @@ namespace RealEstate.Presistence.Configurations
                    .WithMany()
                    .HasForeignKey(bpl => bpl.BlogPostId)
                    .HasPrincipalKey(m=> m.Id)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.NoAction);
 
 
 

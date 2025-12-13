@@ -32,6 +32,12 @@ namespace RealEstate.Persistence.Configurations
                  .HasForeignKey(m => m.CityId)
                  .HasPrincipalKey(c => c.Id)
                  .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasOne<Category>()
+                 .WithMany()
+                 .HasForeignKey(m => m.CategoryId)
+                 .HasPrincipalKey(c => c.Id)
+                 .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
