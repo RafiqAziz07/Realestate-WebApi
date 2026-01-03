@@ -15,7 +15,7 @@ namespace RealEstate.Presistence.Configurations
 
             builder.Property(c => c.Id).HasColumnType("int").IsRequired().UseIdentityColumn(1,1);
             builder.Property(c => c.Name).HasColumnType("nvarchar").IsRequired().HasMaxLength(100);
-            builder.Property(c => c.LogaPath).HasColumnType("nvarchar").IsRequired().HasMaxLength(250);
+            
 
         }
     }
